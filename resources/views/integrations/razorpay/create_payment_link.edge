@@ -1,0 +1,75 @@
+@layout('layout.master')
+@set('title', 'Payments')
+
+@section('body')
+<div class="bg-white shadow my-2">
+	<div class="max-w-screen-2xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+		Create Payment Link
+	</div>
+</div>
+<div class="bg-white shadow my-2">
+	<div class="max-w-screen-2xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+		<form action="{{ route('integrations.razorpay.storePayment') }}" method="post">
+			<div class="grid md:grid-cols-2 sm:grid-cols-1 gap-1">
+				<div class="form-control w-full">
+					<label class="label">
+						<span class="label-text">Customer Name:</span>
+					</label>
+					<input type="text" placeholder="Type here name" class="input input-bordered w-full text-white" name="name" />
+				</div>
+
+				<div class="form-control w-full">
+					<label class="label">
+						<span class="label-text">Amount:</span>
+					</label>
+					<input type="number" placeholder="Type here amount" class="input input-bordered w-full text-white" name="amount" />
+				</div>
+
+				<div class="form-control w-full">
+					<label class="label">
+						<span class="label-text">Payment Intentded For: </span>
+					</label>
+					<input type="string" placeholder="Payment Intentded For" class="input input-bordered w-full text-white" name="paymentFor" />
+				</div>
+
+				<div class="form-control w-full">
+					<label class="label">
+						<span class="label-text">Email: </span>
+					</label>
+					<input type="email" placeholder="Email ID of User" class="input input-bordered w-full text-white" name="email" />
+				</div>
+
+				<div class="form-control w-full">
+					<label class="label">
+						<span class="label-text">Phone: </span>
+					</label>
+					<input type="number" placeholder="Phone of User" class="input input-bordered w-full text-white" name="phone" />
+				</div>
+
+				<div class="form-control">
+					<label class="label">&nbsp;</label>
+					<div class="grid grid-cols-2">
+						<label class="label cursor-pointer">
+							<span class="label-text">Via Phone</span>
+							<input type="radio" name="mode" value="viaPhone" class="radio checked:bg-red-500" />
+						  </label>
+						  <label class="label cursor-pointer">
+							<span class="label-text">Via Emaiil</span>
+							<input type="radio" name="mode" value="viaEmail" class="radio checked:bg-blue-500" />
+						  </label>
+					</div>
+			  	</div>
+				  <div class="form-control w-full">
+					<label class="label">
+						<span class="label-text">Notes: </span>
+					</label>
+					<textarea name="notes" id="notes" cols="30" rows="5" class="input input-bordered w-full text-white" placeholder="Notes"></textarea>
+				</div>
+			</div>
+			<div class="grid grid-cols-8 gap-1 mt-2">
+				<button type="submit" class="btn btn-secondary">Submit</button>
+			</div>
+		</form>
+	</div>
+</div>
+@end

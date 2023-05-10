@@ -1,0 +1,16 @@
+<div class="navbar bg-white pt-2">
+	<div class="navbar-start">
+		<a class="btn btn-ghost normal-case text-xl" href="{{ route('welcome') }}">AdonisJS</a>
+	</div>
+
+	@if(auth && auth.isLoggedIn)
+
+	<form action="{{ route('logout') }}" method="post" id="logout-form"></form>
+	<div class="navbar-end">
+		<ul class="menu menu-horizontal px-1">
+			<li class="m-1"><a href="{{ route('integrations.razorpay.getAllPayments') }}">RP Payments</a></li>
+			<li class="m-1"><button class="btn btn-success" onclick="document.getElementById('logout-form').submit();">Logout</button></li>
+		</ul>
+	</div>
+	@endif
+</div>

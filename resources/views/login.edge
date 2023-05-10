@@ -1,0 +1,53 @@
+@layout('layout.master')
+@set('title', 'Home page')
+
+@section('body')
+<div class="flex justify-center">
+
+	<div class="bg-white shadow">
+		<div class="max-w-screen-2xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+			Login
+		</div>
+
+		<div class="max-w-screen-2xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+			@if(flashMessages.has('authError'))
+			<div class="alert alert-error">
+				<div>
+					<span>{{ flashMessages.get('authError') }}</span>
+				</div>
+			</div>
+			@end
+			<form action="{{ route('postLogin') }}" method="post">
+				<div class="form-control w-full">
+					<label class="label">
+						<span class="label-text">Email</span>
+					</label>
+					<input type="text" placeholder="Type here" class="input input-bordered w-full text-white" name="email" value="{{ flashMessages.get('email', '') }}"/>
+					@if(flashMessages.has('errors.email'))
+					<label class="label">
+						<span class="label-text text-red-500">{{ flashMessages.get('errors.email') }}</span>
+					</label>
+					@end
+
+				</div>
+
+				<div class="form-control w-full">
+					<label class="label">
+						<span class="label-text">Password</span>
+					</label>
+					<input type="password" placeholder="Type here" class="input input-bordered w-full text-white"
+						name="password" />
+					@if(flashMessages.has('errors.password'))
+					<label class="label">
+						<span class="label-text text-red-500">{{ flashMessages.get('errors.password') }}</span>
+					</label>
+					@end
+				</div>
+				<div class="form-control mt-2">
+					<button class="btn btn-success">Login</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+@end

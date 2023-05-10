@@ -1,0 +1,55 @@
+@layout('layout.master')
+@set('title', 'Payments')
+
+@section('body')
+<div class="bg-white shadow my-2">
+	<div class="max-w-screen-2xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+		Payments
+	</div>
+</div>
+
+<div class="bg-white shadow my-2">
+	<div class="max-w-screen-2xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+		<a class="btn" href="{{ route('integrations.razorpay.createPayment') }}">Create A New Patment Link</a>
+		<div class="mt-2">
+			<div class="overflow-x-auto">
+				<table class="table w-full">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Amount</th>
+							<th>Date Created</th>
+							<th>Status</th>
+							<th>Link</th>
+							<th>Created By</th>
+						</tr>
+					</thead>
+					<tbody>
+						@each(transaction in transactions)
+						<tr>
+							<td>{{ transaction.transactionId ?? "-" }}</td>
+							<td>{{ transaction.amount ?? "-" }}</td>
+							<td>{{ transaction.createdAtComputed ?? "-" }}</td>
+							<td>{{ transaction.status ?? "-" }}</td>
+							<td>{{ transaction.shortUrl ?? "-" }}</td>
+							<td>{{ transaction.user.email ?? "-" }}</td>
+						</tr>
+						@endeach
+					</tbody>
+				</table>
+				@if(transactions.hasPages)
+
+				@each(
+				link in transactions.getUrlsForRange(transactions.firstPage, transactions.lastPage)
+				)
+				<a href="{{ link.url }}" class="btn btn-square btn-success btn-sm mt-2 {{ link.isActive ? 'bg-green-500 ' : '' }}">
+					{{ link.page }}
+				</a>
+				@endeach
+
+				@endif
+			</div>
+		</div>
+	</div>
+</div>
+@end
